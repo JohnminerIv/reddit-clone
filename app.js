@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
 })
 
 require('./controllers/posts.js')(app);
+require('./controllers/comments.js')(app);
 
 
 
