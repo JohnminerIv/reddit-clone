@@ -16,4 +16,23 @@ module.exports = app => {
       return res.redirect(`/`);
       })
     });
+    app.get("/post/all", (req, res) =>{
+        Post.find({}).lean()
+        .then(posts => {
+          res.render('post-all', { posts });
+        })
+        .catch(err => {
+          console.log(err.message);
+        })
+    })
+    app.get("/post/:id", function(req, res) {
+        // LOOK UP THE POST
+        Post.findById(req.params.id).lean()
+          .then(post => {
+            res.render("post-show", { post });
+          })
+          .catch(err => {
+            console.log(err.message);
+          });
+      });
   };
