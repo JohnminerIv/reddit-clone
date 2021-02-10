@@ -1,0 +1,32 @@
+{
+  "name": "reddit-clone",
+  "version": "1.0.0",
+  "description": "A clone of reddit using node.js, expresss, and express handlebars",
+  "main": "app.js",
+  "scripts": {
+    "run": "node app.js",
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnminerIv/reddit-clone.git"
+  },
+  "keywords": [
+    "reddit",
+    "node",
+    "express"
+  ],
+  "author": "John Miner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnminerIv/reddit-clone/issues"
+  },
+  "homepage": "https://github.com/JohnminerIv/reddit-clone#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "chai": "^4.3.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mocha": "^8.2.1"
+  }
+}
