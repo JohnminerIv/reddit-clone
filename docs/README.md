@@ -1,3 +1,5 @@
-# Headline
+# Node Reddit Clone
 
-> An awesome project.
+>This project is a basic clone of reddit using document and behavioral test driven development.
+
+
