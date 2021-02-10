@@ -13,5 +13,6 @@ it("Should return a homepage", () => {
         .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('object');
+            res.text.should.contain('Hello from index')
          });
 });
