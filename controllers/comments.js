@@ -3,7 +3,7 @@ const Post = require('../models/post');
 
 module.exports = function(app) {
 // CREATE Comment
-app.post("/post/:postId/comment/create", function(req, res) {
+app.post("/post/:postId/comment/create", (req, res) => {
     // INSTANTIATE INSTANCE OF MODEL
     const comment = new Comment(req.body);
   
