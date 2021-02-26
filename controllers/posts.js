@@ -7,14 +7,15 @@ module.exports = app => {
     })
 
     app.post("/post/create", (req, res) => {
-    // INSTANTIATE INSTANCE OF POST MODEL
-    const post = new Post(req.body);
-    // SAVE INSTANCE OF POST MODEL TO DB
-    post
-    .save((err, post) => {
-      // REDIRECT TO THE ROOT
-      return res.redirect(`/`);
-      })
+      if (req.user) {
+        var post = new Post(req.body);
+    
+        post.save(function(err, post) {
+          return res.redirect(`/`);
+        });
+      } else {
+        res.status(401).send({'401': 'Not authorised'})
+      }
     });
 
     app.get("/post/all", (req, res) => {
