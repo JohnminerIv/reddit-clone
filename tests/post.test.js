@@ -1,5 +1,6 @@
 const mocha = require("mocha")
 const chai = require("chai")
+const mongoose = require('mongoose')
 const chaiHttp = require('chai-http');
 
 const Post = require('../models/post');
@@ -7,6 +8,14 @@ const app = require("../app")
 const expect = chai.expect;
 chai.use(chaiHttp);
 chai.should();
+
+after((done) => {
+    // required because https://github.com/Automattic/mongoose/issues/1251#issuecomment-65793092
+    mongoose.models = {}
+    mongoose.modelSchemas = {}
+    mongoose.connection.close()
+    done()
+  })
 
 describe('Posts', function() {
     const agent = chai.request.agent(app.app);
