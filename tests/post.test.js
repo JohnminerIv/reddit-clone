@@ -25,7 +25,7 @@ describe('Posts', function() {
         url: 'https://www.google.com',
         summary: 'post summary'
     };
-    it('Should create with valid attributes at POST /posts/new', function(done) {
+    it('Should create with valid attributes at POST /post/create', function(done) {
         // Checks how many posts there are now
         Post.estimatedDocumentCount()
           .then(function (initialDocCount) {
