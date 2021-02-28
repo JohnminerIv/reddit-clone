@@ -51,7 +51,13 @@ module.exports = app => {
         .findById(req.params.id)
         .lean()
         .populate('author')
-        .populate('comments')
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'author',
+            model: 'User'
+          }
+        })
         .then(post => {
           res.render("post-show", { post, currentUser});
         })
