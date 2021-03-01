@@ -1,5 +1,6 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const mongoose = require('mongoose')
 const server = require("../app");
 const should = chai.should();
 chai.use(chaiHttp);
@@ -31,8 +32,10 @@ it("should be able to signup", function(done) {
         });
     });
   });
-});
 
-after(function () {
+});
+after(function (done) {
     agent.close()
+    // mongoose.connection.close()
+    done()
   });

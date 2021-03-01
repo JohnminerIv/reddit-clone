@@ -7,14 +7,6 @@ const app = require("../app")
 chai.use(chaiHttp);
 chai.should();
 
-after((done) => {
-    // required because https://github.com/Automattic/mongoose/issues/1251#issuecomment-65793092
-    mongoose.models = {}
-    mongoose.modelSchemas = {}
-    mongoose.connection.close()
-    done()
-  })
-
 describe("site", function() {
 it("Should return a homepage", () => {
     chai.request(app.app)
@@ -26,3 +18,10 @@ it("Should return a homepage", () => {
          });
 });
 });
+after((done) => {
+  // required because https://github.com/Automattic/mongoose/issues/1251#issuecomment-65793092
+  // mongoose.connection.close()
+  done()
+})
+
+
