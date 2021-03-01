@@ -49,15 +49,8 @@ module.exports = app => {
         // LOOK UP THE POST
         Post
         .findById(req.params.id)
+        .populate('comments')
         .lean()
-        .populate('author')
-        .populate({
-          path: 'comments',
-          populate: {
-            path: 'author',
-            model: 'User'
-          }
-        })
         .then(post => {
           res.render("post-show", { post, currentUser});
         })
@@ -71,7 +64,6 @@ module.exports = app => {
         Post
         .find({ subreddit: req.params.subreddit })
         .lean()
-        .populate('author')
         .then(posts => {
           res.render("post-all", { posts, currentUser });
         })
