@@ -24,7 +24,7 @@ app.post("/post/:postId/comment/create", (req, res) => {
         ]);
     })
     .then(post => {
-        res.redirect(`/posts/${req.params.postId}`);
+        res.redirect(`/post/${req.params.postId}`);
     })
     .catch(err => {
         console.log(err);

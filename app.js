@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 require('./data/reddit-db');
+const path = require('path');
 var cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 
@@ -12,6 +13,7 @@ const expressValidator = require('express-validator');
 
 // App Setup
 const app = express();
+const publicPath = path.join(__dirname, 'public');
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -39,6 +41,8 @@ var checkAuth = (req, res, next) => {
     next();
   };
   app.use(checkAuth);
+
+app.use('/', express.static(publicPath));
 // Routes
 app.get('/', (req, res) => {
     var currentUser = req.user;
@@ -48,6 +52,7 @@ app.get('/', (req, res) => {
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 require('./controllers/auth.js')(app);
+require('./controllers/replies.js')(app);
 
 
 
