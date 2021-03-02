@@ -3,6 +3,6 @@
   services:
     web:
       build: .
-      command: node app.js
+      command: npm test
       ports:
         - "${PORT}:${PORT}"

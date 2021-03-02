@@ -83,7 +83,7 @@ after(function (done) {
             username: user.username
         })
           .then(function (res) {
-            mongoose.connection.close()
+            // mongoose.connection.close()
               done()
           })
           .catch(function (err) {
