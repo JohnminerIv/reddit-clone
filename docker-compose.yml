@@ -8,13 +8,11 @@ services:
       MONGO_INITDB_DATABASE: "reddit-db"
       MONGO_INITDB_ROOT_USERNAME: ${ROOTUSER}
       MONGO_INITDB_ROOT_PASSWORD: ${ROOTPASS}
-    ports:
-      - "27017:27017"
 
   nodejs:
     build: .
-    command: ["npm", "test"]
-    # command: ["node", "app.js"]
+    # command: ["npm", "test"]
+    command: ["node", "app.js"]
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${ROOTUSER}
       MONGO_INITDB_ROOT_PASSWORD: ${ROOTPASS}
