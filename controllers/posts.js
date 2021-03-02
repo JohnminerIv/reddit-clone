@@ -9,9 +9,11 @@ module.exports = app => {
 
     app.post("/post/create", (req, res) => {
       if (req.user) {
-        let post = req.body
-        post['author'] = req.user
-        post = new Post(post);
+        var post = new Post(req.body);
+        post.author = req.user._id;
+        post.upVotes = [];
+        post.downVotes = [];
+        post.voteScore = 0;
     
         post
         .save()
@@ -69,6 +71,33 @@ module.exports = app => {
         })
         .catch(err => {
           console.log(err);
+        });
+      });
+    
+      app.put("/post/:id/vote-up", function(req, res) {
+        Post.findById(req.params.id).exec(function(err, post) {
+          post.upVotes.push(req.user._id);
+          post.voteScore = post.voteScore + 1;
+          post.save();
+      
+          res.status(200).send({'yay': 'It worked'});
+        });
+      });
+      
+      app.put("/post/:id/vote-down", function(req, res) {
+        Post.findById(req.params.id).exec(function(err, post) {
+          post.downVotes.push(req.user._id);
+          post.voteScore = post.voteScore - 1;
+          post.save();
+      
+          res.status(200).send({'yay': 'It worked'});
+        });
+      });
+      
+      app.get("/post/:id/vote-count", function(req, res) {
+        Post.findById(req.params.id).exec(function(err, post) {
+      
+          res.status(200).send({'count': post.voteScore});
         });
       });
   };
