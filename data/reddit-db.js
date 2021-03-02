@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 assert = require("assert");
 
-const url = "mongodb://localhost/reddit-db";
+const url = `mongodb://${process.env.ROOTUSER}:${process.env.ROOTPASS}@db:27017/reddit-db?authSource=admin`;
 mongoose.Promise = global.Promise;
 mongoose.connect(
   url,
