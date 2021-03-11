@@ -2,14 +2,14 @@
 const mongoose = require("mongoose");
 assert = require("assert");
 
-const url = `mongodb://${process.env.ROOTUSER}:${process.env.ROOTPASS}@db:27017/reddit-db?authSource=admin`;
+const url = `mongodb://${process.env.ROOTUSER}:${process.env.ROOTPASS}@${process.env.DB}:27017/${process.env.DATABASENAME}?authSource=admin`;
 mongoose.Promise = global.Promise;
 mongoose.connect(
   url,
   {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false,
   },
-  function(err, db) {
+  function (err, db) {
     assert.equal(null, err);
     console.log("Connected successfully to database");
 
