@@ -16,6 +16,7 @@ Have Docker installed,
 Navigate to homepage at http://localhost:3000
 
 ### Features
+##### Test the deployed application https://node-reddit.dev.john-the-fourth.engineer/
 #### Create a post
 Make a /posts/new route (/post/create) and template (posts-new.handlebars)
 Add form to posts-new template
